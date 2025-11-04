@@ -11,14 +11,11 @@ namespace EmployeeRegistry
             // Set up initial state
             var testEmployees = new Faker<Employee>()
                 .RuleFor(u => u.Id, f => employeeId.GenerateId())
-                .RuleFor(u => u.Name, f => f.Person.Name)
+                .RuleFor(u => u.Name, f => $"{f.Name.FirstName()} {f.Name.LastName()}")
                 .RuleFor(u => u.Salary, f => f.Finance.Amount(10000, 80000));
             var employees = testEmployees.Generate(3);
-            
-            foreach(var employee in employees)
-            {
-                Console.WriteLine($"Employe #{employee.Id}: {employee.Name}");
-            }
+
+
             Registry registry = new(employees.ToArray());
 
             Console.WriteLine("Välkommen till personalregistret. Välj en funktion från menyn:\n");
@@ -82,14 +79,14 @@ namespace EmployeeRegistry
                 ));
             }
         }
-        List<Employee> Employees = [new Employee(1, "John Doe", 35000)];
+        List<Employee> Employees = [];
 
         public void DisplayAllEmployees()
         {
             Console.WriteLine("\nVisar all personal:");
             foreach (Employee employee in Employees)
             {
-                Console.WriteLine($"\tnr. {employee.Id}: {employee.Name}");
+                Console.WriteLine($"\tnr. {employee.Id}: {employee.Name} {employee.Salary:C}");
             }
         }
     }
