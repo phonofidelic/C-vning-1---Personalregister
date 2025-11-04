@@ -38,4 +38,16 @@ Methods:
 * `void RemoveEmployee(int employeeId)`
 
 ### Uppgift 3
-Skriv programmet (WIP)
+Skriv programmet 
+
+Programmet visar en meny med två möjliga val:
+1) Lägg till ny personal
+2) Visa registret
+
+
+<img src="screenshot.png"></img>
+
+Kvar att göra:
+* Validera input
+* Felhantering
+* Återgå till menyn efter slutförd val
