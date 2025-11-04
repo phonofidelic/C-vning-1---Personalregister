@@ -1,9 +1,23 @@
-﻿namespace EmployeeRegistry
+﻿using Bogus;
+using Newtonsoft.Json;
+
+namespace EmployeeRegistry
 {
     class Program
     {
         static void Main(string[] args)
         {
+            AutoIncrement employeeId = new();
+            // Set up initial state
+            var testEmployees = new Faker<Employee>()
+                .RuleFor(u => u.Id, f => employeeId.GenerateId())
+                .RuleFor(u => u.Name, f => $"{f.Name.FirstName()} {f.Name.LastName()}")
+                .RuleFor(u => u.Salary, f => f.Finance.Amount(10000, 80000));
+            var employees = testEmployees.Generate(3);
+
+
+            Registry registry = new(employees.ToArray());
+
             Console.WriteLine("Välkommen till personalregistret. Välj en funktion från menyn:\n");
             Console.WriteLine("\t1) Lägg till ny personal");
             Console.WriteLine("\t2) Visa registret");
@@ -24,14 +38,15 @@
                         break;
 
                     case ActionType.DisplayRegistry:
+                        registry.DisplayAllEmployees();
                         break;
 
                     default:
                         Console.WriteLine($"Valet \"{choice}\" finns tyvärr inte.");
                         break;
                 }
-                Console.WriteLine($"Choice: {choice}");
-            } catch
+            }
+            catch
             {
                 Console.WriteLine($"Ett fel inträffade.");
                 Environment.Exit(0);
@@ -44,5 +59,69 @@
         AddEmployee = 1,
         DisplayRegistry = 2
     }
-    
+
+    class Registry
+    {
+        public Registry()
+        {
+            
+        }
+        public Registry(Employee[] initialEmployees)
+        {
+            foreach (var employee in initialEmployees)
+            {
+                Employees.Add(new Employee(
+                    employee.Id,
+
+                    employee.Name,
+
+                    employee.Salary
+                ));
+            }
+        }
+        List<Employee> Employees = [];
+
+        public void DisplayAllEmployees()
+        {
+            Console.WriteLine("\nVisar all personal:");
+            foreach (Employee employee in Employees)
+            {
+                Console.WriteLine($"\tnr. {employee.Id}: {employee.Name} {employee.Salary:C}");
+            }
+        }
+    }
+
+    class Employee
+    {
+        public Employee()
+        {
+            
+        }
+        public Employee(int id, string name, decimal salary = 0)
+        {
+            Id = id;
+            Name = name;
+            Salary = salary;
+        }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public decimal Salary { get; set; }
+    }
+
+    public class AutoIncrement
+    {
+        private int Id;
+        public AutoIncrement()
+        {
+            Id = 1;
+        }
+        public AutoIncrement(int initialValue)
+        {
+            Id = initialValue;
+        }
+        public int GenerateId()
+        {
+            return Id++;
+        }
+    }
 }
