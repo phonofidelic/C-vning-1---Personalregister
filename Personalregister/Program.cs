@@ -35,6 +35,8 @@ namespace EmployeeRegistry
                 switch (choice)
                 {
                     case ActionType.AddEmployee:
+                        registry.AddEmployee(registry.GetNewEmployeeInput(employeeId));
+                        registry.DisplayAllEmployees();
                         break;
 
                     case ActionType.DisplayRegistry:
@@ -88,6 +90,23 @@ namespace EmployeeRegistry
             {
                 Console.WriteLine($"\tnr. {employee.Id}: {employee.Name} {employee.Salary:C}");
             }
+        }
+
+        public Employee GetNewEmployeeInput(AutoIncrement employeeId)
+        {
+            int id = employeeId.GenerateId();
+            Console.Write("Namn: ");
+            string name = Console.ReadLine();
+            Console.Write("Lön: ");
+            string salaryString = Console.ReadLine();
+            decimal salary = decimal.Parse(salaryString);
+
+            return new Employee(id, name, salary);
+        }
+
+        public void AddEmployee(Employee newEmployee)
+        {
+            Employees.Add(newEmployee);
         }
     }
 
