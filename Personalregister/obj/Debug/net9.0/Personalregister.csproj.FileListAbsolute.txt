@@ -12,3 +12,8 @@
 /Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/Personalregister.pdb
 /Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/Personalregister.genruntimeconfig.cache
 /Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/ref/Personalregister.dll
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/Personalregister.sourcelink.json
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/bin/Debug/net9.0/Bogus.dll
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/Personalregister.csproj.AssemblyReference.cache
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/Personal.7EC731D7.Up2Date
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/bin/Debug/net9.0/Newtonsoft.Json.dll
