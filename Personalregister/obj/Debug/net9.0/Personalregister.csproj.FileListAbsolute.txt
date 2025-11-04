@@ -1,0 +1,14 @@
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/bin/Debug/net9.0/Personalregister
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/bin/Debug/net9.0/Personalregister.deps.json
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/bin/Debug/net9.0/Personalregister.runtimeconfig.json
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/bin/Debug/net9.0/Personalregister.dll
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/bin/Debug/net9.0/Personalregister.pdb
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/Personalregister.GeneratedMSBuildEditorConfig.editorconfig
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/Personalregister.AssemblyInfoInputs.cache
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/Personalregister.AssemblyInfo.cs
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/Personalregister.csproj.CoreCompileInputs.cache
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/Personalregister.dll
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/refint/Personalregister.dll
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/Personalregister.pdb
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/Personalregister.genruntimeconfig.cache
+/Users/christopher/Documents/Fullstackutbildning/1-personalregister/Personalregister/obj/Debug/net9.0/ref/Personalregister.dll
