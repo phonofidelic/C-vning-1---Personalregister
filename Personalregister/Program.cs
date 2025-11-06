@@ -18,64 +18,39 @@ namespace EmployeeRegistry
 
             Registry registry = new(employees.ToArray());
 
-            Console.WriteLine("Välkommen till personalregistret. Välj en funktion från menyn:\n");
-            Console.WriteLine("\t1) Lägg till ny personal");
-            Console.WriteLine("\t2) Visa registret");
-            var rawChoice = Console.ReadLine();
-            if (rawChoice?.Length < 1)
-            {
-                Console.WriteLine("Inget val lästes in. Avslutar...");
-                Environment.Exit(0);
-            }
+            MenuActionType? choice;
 
-            ActionType choice;
-            try
+            do
             {
-                choice = Enum.Parse<ActionType>(rawChoice);
-                switch (choice)
+                registry.DisplayMenu();
+                choice = registry.GetMenuInput();
+
+                try
                 {
-                    case ActionType.AddEmployee:
-                        registry.AddEmployee(registry.GetNewEmployeeInput(employeeId));
-                        registry.DisplayAllEmployees();
-                        break;
 
-                    case ActionType.DisplayRegistry:
-                        registry.DisplayAllEmployees();
-                        break;
+                    switch (choice)
+                    {
+                        case MenuActionType.AddEmployee:
+                            registry.AddEmployee(registry.GetNewEmployeeInput(employeeId));
+                            break;
 
-                    default:
-                        Console.WriteLine($"Valet \"{choice}\" finns tyvärr inte.");
-                        break;
+                        case MenuActionType.DisplayRegistry:
+                            registry.DisplayAllEmployees();
+                            Console.ReadKey();
+                            choice = null;
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
-            }
-            catch
-            {
-                Console.WriteLine($"Ett fel inträffade.");
-                Environment.Exit(0);
-            }
-        }
-    }
+                catch
+                {
+                    Console.WriteLine($"Ett fel inträffade.");
+                    Environment.Exit(0);
+                }
+            } while (choice == null);
 
-    enum ActionType
-    {
-        AddEmployee = 1,
-        DisplayRegistry = 2
-    }
-
-    public class AutoIncrement
-    {
-        private int Id;
-        public AutoIncrement()
-        {
-            Id = 1;
-        }
-        public AutoIncrement(int initialValue)
-        {
-            Id = initialValue;
-        }
-        public int GenerateId()
-        {
-            return Id++;
         }
     }
 }
