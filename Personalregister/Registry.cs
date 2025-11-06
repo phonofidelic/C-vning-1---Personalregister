@@ -16,6 +16,8 @@ namespace EmployeeRegistry
                 ));
             }
         }
+
+        private string? ErrorMessage = null;
         private readonly List<Employee> Employees = [];
 
         public void DisplayMenu()
@@ -24,11 +26,14 @@ namespace EmployeeRegistry
             Console.WriteLine("\nVälkommen till personalregistret. Välj en funktion från menyn:\n");
             Console.WriteLine("\t1) Lägg till ny personal");
             Console.WriteLine("\t2) Visa registret");
-            Console.WriteLine("\n\t\"q\" för att avsluta.");
+            Console.WriteLine("\n\t\"Q\" för att avsluta.");
+            if (ErrorMessage != null)
+                DisplayErrorMessage(ErrorMessage);
         }
 
         public MenuActionType? GetMenuInput()
         {
+            SetErrorMessage();
             var rawInput = Console.ReadKey(true).KeyChar.ToString();
             if (rawInput == "q")
             {
@@ -44,9 +49,7 @@ namespace EmployeeRegistry
             catch
             {
                 // TODO: add error logging
-                Console.ResetColor();
-                DisplayErrorMessage($"\n\"{rawInput}\" är inte ett giltigt val. \nFörsök igen, eller avsluta med \"Q\"\n");
-                Console.ReadKey();
+                SetErrorMessage($"\n\"{rawInput}\" är inte ett giltigt val. \nFörsök igen, eller avsluta med \"Q\"\n");
             }
 
             return null;
@@ -75,11 +78,21 @@ namespace EmployeeRegistry
             return Enum.TryParse<MenuActionType>(input, true, out _);
         }
 
-        static private void DisplayErrorMessage(string message)
+        private void DisplayErrorMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"\n{message}");
             Console.ResetColor();
+            
+        }
+
+        private void SetErrorMessage()
+        {
+            ErrorMessage = null;
+        }
+        private void SetErrorMessage(string message)
+        {
+            ErrorMessage = message;
         }
 
         public void DisplayAllEmployees()
