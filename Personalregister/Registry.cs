@@ -64,7 +64,7 @@ namespace EmployeeRegistry
             return Enum.Parse<MenuActionType>(input);
         }
 
-        private bool ValidateMenuInput(string input)
+        private static bool ValidateMenuInput(string input)
         {
             if (input == null)
                 return false;
@@ -78,7 +78,7 @@ namespace EmployeeRegistry
             return Enum.TryParse<MenuActionType>(input, true, out _);
         }
 
-        private void DisplayErrorMessage(string message)
+        private static void DisplayErrorMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"\n{message}");
@@ -117,9 +117,9 @@ namespace EmployeeRegistry
         {
             int id = employeeId.GenerateId();
             Console.Write("Namn: ");
-            string name = Console.ReadLine();
+            string name = Console.ReadLine() ?? "";
             Console.Write("Lön: ");
-            string salaryString = Console.ReadLine();
+            string salaryString = Console.ReadLine() ?? "";
             decimal salary = decimal.Parse(salaryString);
 
             return new Employee(id, name, salary);
