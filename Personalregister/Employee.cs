@@ -1,3 +1,4 @@
+
 namespace EmployeeRegistry
 {
     class Employee
@@ -15,5 +16,10 @@ namespace EmployeeRegistry
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Salary { get; set; }
+
+        public override string ToString()
+        {
+            return $"\t#{Id}: {Name} {Salary:C}";
+        }
     }
 }
