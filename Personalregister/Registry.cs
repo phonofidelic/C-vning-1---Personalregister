@@ -2,36 +2,6 @@ namespace EmployeeRegistry
 {
     class Registry
     {
-        static private MenuActionType ParseMenuInput(string input)
-        {
-            bool isValidInput = ValidateMenuInput(input);
-            if (!isValidInput)
-                throw new Exception("Invalid input");
-
-            return Enum.Parse<MenuActionType>(input);
-        }
-
-        static private bool ValidateMenuInput(string input)
-        {
-            if (input == null)
-                return false;
-
-            if (input.Length != 1)
-                return false;
-
-            if (int.Parse(input) > Enum.GetValues<MenuActionType>().Length)
-                return false;
-
-            return Enum.TryParse<MenuActionType>(input, true, out _);
-        }
-
-        static private void DisplayErrorMessage(string message)
-        {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"\n{message}");
-            Console.ResetColor();
-        }
         public Registry() {}
         public Registry(Employee[] initialEmployees)
         {
@@ -48,7 +18,7 @@ namespace EmployeeRegistry
         }
         private readonly List<Employee> Employees = [];
 
-        static public void DisplayMenu()
+        public void DisplayMenu()
         {
             Console.Clear();
             Console.WriteLine("\nVälkommen till personalregistret. Välj en funktion från menyn:\n");
@@ -57,7 +27,7 @@ namespace EmployeeRegistry
             Console.WriteLine("\n\t\"q\" för att avsluta.");
         }
 
-        static public MenuActionType? GetMenuInput()
+        public MenuActionType? GetMenuInput()
         {
             var rawInput = Console.ReadKey(true).KeyChar.ToString();
             if (rawInput == "q")
@@ -76,9 +46,40 @@ namespace EmployeeRegistry
                 // TODO: add error logging
                 Console.ResetColor();
                 DisplayErrorMessage($"\n\"{rawInput}\" är inte ett giltigt val. \nFörsök igen, eller avsluta med \"Q\"\n");
+                Console.ReadKey();
             }
 
             return null;
+        }
+
+        private MenuActionType ParseMenuInput(string input)
+        {
+            bool isValidInput = ValidateMenuInput(input);
+            if (!isValidInput)
+                throw new Exception("Invalid input");
+
+            return Enum.Parse<MenuActionType>(input);
+        }
+
+        private bool ValidateMenuInput(string input)
+        {
+            if (input == null)
+                return false;
+
+            if (input.Length != 1)
+                return false;
+
+            if (int.Parse(input) > Enum.GetValues<MenuActionType>().Length)
+                return false;
+
+            return Enum.TryParse<MenuActionType>(input, true, out _);
+        }
+
+        static private void DisplayErrorMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"\n{message}");
+            Console.ResetColor();
         }
 
         public void DisplayAllEmployees()

@@ -22,8 +22,8 @@ namespace EmployeeRegistry
 
             do
             {
-                Registry.DisplayMenu();
-                choice = Registry.GetMenuInput();
+                registry.DisplayMenu();
+                choice = registry.GetMenuInput();
 
                 try
                 {
